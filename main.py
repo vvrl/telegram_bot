@@ -1,3 +1,4 @@
+from datetime import datetime
 from aiogram import Bot, Dispatcher, executor, types
 
 API_TOKEN = '6271398524:AAG9J3hSFvFWfRTptYi7-6yRU8Urk0OoceU'
@@ -11,9 +12,16 @@ async def send_welcome(message: types.Message):
     await message.reply("Привет")
 
 
-@dp.message_handler()
-async def echo(message: types.Message):
-    await message.answer(message.text)
+
+@dp.message_handler(commands=['date'])
+async def send_date(message: types.Message):
+    dt = datetime.now()
+    await message.reply(dt.strftime("%A, %d. %B %Y %I:%M%p"))
+
+
+# @dp.message_handler()
+# async def echo(message: types.Message):
+#     await message.answer(message.text)
 
 if __name__ == '__main__':
     executor.start_polling(dp,skip_updates=True)
