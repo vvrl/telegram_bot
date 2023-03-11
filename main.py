@@ -17,11 +17,12 @@ async def send_welcome(message: types.Message):
 async def send_date(message: types.Message):
     dt = datetime.now()
     await message.reply(dt.strftime("%A, %d. %B %Y %I:%M%p"))
+    
 
 
-# @dp.message_handler()
-# async def echo(message: types.Message):
-#     await message.answer(message.text)
-
+@dp.message_handler()
+async def echo(message: types.Message):
+    await message.answer(message.text)
+ 
 if __name__ == '__main__':
     executor.start_polling(dp,skip_updates=True)
