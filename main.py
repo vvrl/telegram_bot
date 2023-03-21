@@ -1,15 +1,18 @@
 from datetime import datetime
 from aiogram import Bot, Dispatcher, executor, types
+from button import Echo
+from config import API_TOKEN
 
-API_TOKEN = '6271398524:AAG9J3hSFvFWfRTptYi7-6yRU8Urk0OoceU'
+
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 
+
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    await message.reply("Привет")
+    await message.reply("Привет!\nЯ Эхобот от Skillbox!\nОтправь мне любое сообщение, а я тебе обязательно отвечу.", reply_markup=Echo.keyboard)
 
 
 
