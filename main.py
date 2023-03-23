@@ -1,6 +1,6 @@
 from datetime import datetime
 from aiogram import Bot, Dispatcher, executor, types
-from button import Echo
+import button as b
 from config import API_TOKEN
 
 
@@ -12,8 +12,12 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    await message.reply("Привет!\nЯ Эхобот от Skillbox!\nОтправь мне любое сообщение, а я тебе обязательно отвечу.", reply_markup=Echo.keyboard)
+    await message.reply("Привет!\nЯ Эхобот от Skillbox!\nОтправь мне любое сообщение, а я тебе обязательно отвечу.", reply_markup=b.Echo.keyboard)
 
+
+@dp.message_handler(commands=['inline1'])
+async def send_social_media(message: types.Message):
+    await message.answer("Ссылки на мои социальные сети",reply_markup=b.Inline.inline_kb)
 
 
 @dp.message_handler(commands=['date'])
